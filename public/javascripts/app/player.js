@@ -8,8 +8,9 @@ define(['jquery', 'backbone', 'app/views/player', 'app/collections/playlist'], f
         
         index: function(){
             new PlayerView({
-                collection: playlist
-            });
+                collection: playlist,
+                el: document.body
+            }).render();
         }
 
     });
