@@ -30,6 +30,8 @@ body{
         img{
             border: 1px solid #000;
             @include box-shadow(0px 0px 4px rgba(0,0,0,0.8));
+			width: 120px;
+			height: 120px;
         }
         
     }

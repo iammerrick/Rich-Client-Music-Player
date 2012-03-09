@@ -2,6 +2,11 @@ define(['backbone', 'handlebars', 'app/models/song', 'text!app/templates/control
 	var ControlsView = Backbone.View.extend({
 
 		template: Handlebars.compile(template),
+
+		initialize: function(){
+			_.bindAll(this, 'toggleSound');
+			this.model.on('change:isPlaying', this.toggleSound);
+		},
 		
 		events: {
 			'click .buttons-next' : 'next',
@@ -10,17 +15,12 @@ define(['backbone', 'handlebars', 'app/models/song', 'text!app/templates/control
 		},
 
 		render: function(){
-			var html = this.template(this.model.toJSON());
+			var html = this.template(this.model.getCurrentSong().toJSON());
 			this.$el.html(html);
-			
-			this.delegateEvents(this.events);
+
+			this.$('.audio-player').get(0).play();
 			
 			return this;
-		},
-		
-		play: function(song){
-			this.model = song;
-			this.render();
 		},
 		
 		next: function(){
@@ -32,7 +32,17 @@ define(['backbone', 'handlebars', 'app/models/song', 'text!app/templates/control
 		},
 		
 		toggle: function(){
-			this.trigger('toggle');
+			this.model.toggle();
+		},
+
+		toggleSound: function(){
+			var player = this.$('.audio-player').get(0);
+			
+			if(this.model.get('isPlaying')){
+				player.pause();
+			} else {
+				player.play();
+			}
 		}
 	});
 

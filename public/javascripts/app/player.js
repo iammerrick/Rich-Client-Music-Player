@@ -4,7 +4,7 @@ define(['jquery', 'backbone', 'app/views/player'], function($, Backbone, PlayerV
         routes : {
             '' : 'index'
         },
-        
+
         index: function(){
             $(document.body).html(new PlayerView().render().el);
         }

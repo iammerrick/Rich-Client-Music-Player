@@ -3,32 +3,34 @@ define([
 	'handlebars', 
 	'app/views/controls', 
 	'app/views/playlist', 
-	'app/models/song',
-	'app/collections/playlist'
+	'app/models/player'
 	], 
 	function(
 		Backbone, 
 		Handlebars, 
 		ControlsView, 
 		PlaylistView, 
-		Song,
-		playlist
+		Player
 	){
 	var PlayerView = Backbone.View.extend({
 		
 		className: 'player-container',
 		
 		initialize: function(){
+			
+			this.model = new Player();
+
+			// No song send in a mock.
 			this.controls = new ControlsView({
-				model: new Song
+				model: this.model
 			});
 			
 			this.playlist = new PlaylistView({
-				collection: playlist
+				collection: this.model.playlist
 			});
 			
-			this.render();
-			
+			this.model.on('change:currentSong', this.updateControls,this);
+
 			this.listen();
 		},
 		
@@ -40,27 +42,19 @@ define([
 		},
 		
 		play: function(id){
-			if(this.index !== undefined){
-				playlist.get(this.index).set({selected: false});
-			}
-			
-			this.index = id;
-			
-			playlist.get(this.index).set({selected: true});
-			
-			this.controls.play(playlist.get(id));
+			this.model.play(id);	
 		},
 		
 		next: function(){
-			console.log('next')
+			this.model.next();
 		},
 		
 		previous: function(){
-			console.log('previous')
+			this.model.previous();
 		},
 		
 		toggle: function(){
-			console.log('toggle')
+			this.model.toggle();
 		},
 		
 		render: function(){
@@ -69,6 +63,10 @@ define([
 				.append(this.controls.render().el)
 				.append(this.playlist.el);
 			return this;
+		},
+
+		updateControls: function(){
+			this.controls.render();
 		}
 	});
 	

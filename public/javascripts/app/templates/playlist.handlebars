@@ -1,6 +1,6 @@
 <h2>Playlist</h2>
 <ul>
-{{#songs}}
-	<li {{#if selected}} class="selected" {{/if}}><a href="#" data-id="{{id}}">{{name}} By: {{artist}}</a></li>
-{{/songs}}
+{{#each songs}}
+<li {{#if selected}} class="selected" {{/if}}><a href="#" data-id="{{id}}">{{id}}. {{name}} By: {{artist}}</a></li>
+{{/each}}
 </ul>

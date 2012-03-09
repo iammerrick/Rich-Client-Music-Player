@@ -19,8 +19,6 @@ define(['backbone', 'handlebars', 'text!app/templates/playlist.handlebars'], fun
 			var html = this.template({songs: this.collection.toJSON()});
 			this.$el.html(html);
 
-			this.delegateEvents(this.events); // Why do I have to do this here?
-
 			return this;
 		},
 		
