@@ -74,11 +74,25 @@ body{
         font-weight: bold;
         padding-bottom: 5px;
     }
+	
+	li{
+		padding-bottom: 5px;
+		
+		&:last-child{
+			padding-bottom: 0px;
+		}
+	}
     
     a{
         color: #8E9197;
         text-decoration: none;
     }
+	
+	.selected {
+		a{
+			color: #DCDEE0;
+		}
+	}
 }
 
 @import "buttons/*.png";
