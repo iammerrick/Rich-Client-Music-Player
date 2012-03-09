@@ -61,8 +61,16 @@ define(['backbone', 'app/collections/playlist', 'app/models/song'], function(Bac
 		},
 
 		toggle: function(){
+			var index = this.getCurrentIndex();
+
+			// First play should move to first and play.
+			if( ! ~index){
+				this.setCurrentSong(this.playlist.at(0).get('id'));
+				return this.set({'isPlaying' : false});
+			}
+
 			var isPlaying = this.get('isPlaying');
-			this.set({'isPlaying' : ! isPlaying});
+			return this.set({'isPlaying' : ! isPlaying});
 		},
 
 		getCurrentIndex: function(){
