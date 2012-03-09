@@ -1,10 +1,9 @@
-<div class="player">
-	
+<div class="player">	
 	<div class="meta-information">
-		<div class="art"><img src="http://placehold.it/120x120/" /></div>
+		<div class="art"><img src="{{#if artwork}}{{artwork}}{{else}}http://placehold.it/120x120{{/if}}" /></div>
 		<div class="song-information">
-			<h1>Sun &amp; Moon (Distance Remix)</h1>
-			<h2>Above &amp; Beyond (feat. Richard Bedford) Sun &amp; Moon</h2>
+			<h1>{{#if name}}{{name}}{{else}} Select a Song{{/if}}</h1>
+			<h2>{{#if artist}}{{artist}}{{else}} I'll tell you the artist when I know it. {{/if}}</h2>
 		</div>
 	</div>
 	<div class="controls">

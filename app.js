@@ -3,8 +3,13 @@ var tako = require('tako'),
 	app = tako();
 
 
-app.route('/api/songs').json([
-		{ name: 'Angels in the Alleyway' }
+app.route('/api/playlist').json([
+		{ 
+			id: 1, 
+			name: 'Angels in the Alleyway',
+			artwork : 'http://placehold.it/120x120',
+			artist: 'Merrick Christensen'
+		}
 	]);
 
 // Home page

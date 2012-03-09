@@ -1,5 +1,4 @@
-define(['jquery', 'backbone', 'app/views/player', 'app/collections/playlist'], function($, Backbone, PlayerView, playlist){
-
+define(['jquery', 'backbone', 'app/views/player'], function($, Backbone, PlayerView){
     var Player = Backbone.Router.extend({
 
         routes : {
@@ -7,10 +6,7 @@ define(['jquery', 'backbone', 'app/views/player', 'app/collections/playlist'], f
         },
         
         index: function(){
-            new PlayerView({
-                collection: playlist,
-                el: document.body
-            }).render();
+            $(document.body).html(new PlayerView().render().el);
         }
 
     });
