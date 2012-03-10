@@ -1,0 +1,8 @@
+{
+	"name": "Rich-Client-Music-Player"
+	,"version": "0.0.2"
+	,"dependencies": {
+		"tako": "*"
+		,"socket.io-client": "*"
+	}
+}
